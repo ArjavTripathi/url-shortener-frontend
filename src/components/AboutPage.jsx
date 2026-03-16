@@ -1,60 +1,57 @@
-import React from 'react'
+import { FaLink, FaShareAlt, FaEdit, FaGithub } from "react-icons/fa";
+import { MdBarChart } from "react-icons/md";
 
 const AboutPage = () => {
+  const features = [
+    {
+      icon: <FaLink className="text-blue-500 text-2xl" />,
+      title: "Simple URL Shortening",
+      desc: "Paste any long link and get a clean, short URL in seconds. No setup required.",
+    },
+    {
+      icon: <MdBarChart className="text-green-500 text-2xl" />,
+      title: "Powerful Analytics",
+      desc: "Track click counts and gain insight into your link performance over time.",
+    },
+    {
+      icon: <FaShareAlt className="text-purple-500 text-2xl" />,
+      title: "Easy Sharing",
+      desc: "Share your shortened links anywhere — social media, emails, or messages.",
+    },
+    {
+      icon: <FaEdit className="text-pink-500 text-2xl" />,
+      title: "Secure & Safe",
+      desc: "All links are monitored to ensure they are safe for you and your audience.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex items-center justify-center px-6 py-16">
-      <div className="max-w-2xl w-full space-y-12">
+    <div className="lg:px-14 sm:px-8 px-5 min-h-screen bg-white text-slate-800 pt-10 pb-20">
 
-        {/* About the App */}
-        <div>
-          <h1 className="text-4xl font-bold font-montserrat mb-4">About <span className="text-blue-500">LnkIt</span></h1>
-          <p className="text-gray-400 leading-relaxed">
-            LnkIt is a fast and simple URL shortener. Paste any long, ugly link and get a
-            clean, shareable short URL in seconds. No clutter, no nonsense — just shorter links.
-          </p>
-        </div>
+      <h1 className="sm:text-4xl text-3xl font-bold italic mb-3">
+        About <span className="text-blue-500">Linklytics</span>
+      </h1>
+      <p className="text-gray-600 text-sm mb-10 max-w-3xl leading-relaxed">
+        Linklytics simplifies URL shortening for efficient sharing. Easily generate,
+        manage, and track your shortened links.
+      </p>
 
-        {/* Features */}
-        <div>
-          <h2 className="text-xl font-semibold font-montserrat mb-4 text-gray-200">What it does</h2>
-          <ul className="space-y-3 text-gray-400">
-            {[
-              "Shorten any URL instantly",
-              "Track how many times your link was clicked",
-              "Manage all your links in one dashboard",
-              "Secure login to keep your links private",
-            ].map((feature) => (
-              <li key={feature} className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block"></span>
-                {feature}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Divider */}
-        <div className="border-t border-gray-800" />
-
-        {/* About the Maker */}
-        <div>
-          <h2 className="text-xl font-semibold font-montserrat mb-4 text-gray-200">Made by</h2>
-          <div className="flex items-center gap-5">
-            <img
-              src="https://placehold.co/60"
-              alt="Developer"
-              className="w-14 h-14 rounded-full ring-2 ring-blue-500"
-            />
+      <div className="space-y-8">
+        {features.map((f) => (
+          <div key={f.title} className="flex items-start gap-4">
+            <div className="mt-1 shrink-0">{f.icon}</div>
             <div>
-              <p className="font-semibold text-white">John Doe</p>
-              <p className="text-gray-400 text-sm">Full Stack Developer · Built with React & Spring Boot</p>
-              <a href="https://github.com" className="text-blue-400 text-sm hover:underline">github.com/johndoe</a>
+              <h2 className="font-bold text-xl text-slate-800 mb-1">{f.title}</h2>
+              <p className="text-gray-600 text-sm leading-relaxed max-w-3xl">{f.desc}</p>
             </div>
           </div>
-        </div>
-
+        ))}
       </div>
-    </div>
-  )
-}
 
-export default AboutPage
+      
+
+    </div>
+  );
+};
+
+export default AboutPage;
