@@ -26,7 +26,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="lg:px-14 sm:px-8 px-5 min-h-screen bg-white text-slate-800 pt-10 pb-20">
+    <div className="lg:px-14 sm:px-8 px-5 flex-1 bg-white text-slate-800 pt-10 pb-20">
 
       <h1 className="sm:text-4xl text-3xl font-bold italic mb-3">
         About <span className="text-blue-500">Linklytics</span>
