@@ -1,8 +1,14 @@
-import React from 'react'
 import { useForm } from 'react-hook-form'
 import TextField from './TextField';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import api from '../api/api';
+import toast from 'react-hot-toast';
 
 function RegisterPage() {
+    const navigate = useNavigate();
+    const [loader, setLoader] = useState(false);
+
     const {
         register,
         handleSubmit,
@@ -18,7 +24,21 @@ function RegisterPage() {
     });
 
     const registerHandler = async (data) => {
-
+        setLoader(true)
+        try{
+            const {data: response} = await api.post(
+                "/api/auth/public/register",
+                data
+            )
+            reset();
+            navigate("/login");
+            toast.success("Registeration Successful")
+        } catch(error) {
+            console.log(error);
+            toast.error("Registeration Unsuccessful")
+        } finally {
+            setLoader(false);
+        }
     };
 
   return (
@@ -28,6 +48,60 @@ function RegisterPage() {
             <h1 className='text-center font-serif text-btnColor font-bold lg:text-3xl text-2xl'>
                 Register Here
             </h1>
+
+            <hr className='mt-2 mb-5 text-white'/>
+
+            <div className='flex flex-col gap-3'>
+                <TextField 
+                    label="Username"
+                    required
+                    id="Username"
+                    type="text"
+                    message="username is required"
+                    placeholder="Type your username"
+                    register={register}
+                    errors={errors}
+                />
+
+                <TextField 
+                    label="Email"
+                    required
+                    id="Email"
+                    type="text"
+                    message="email is required"
+                    placeholder="Type your email"
+                    register={register}
+                    errors={errors}
+                />
+
+                <TextField 
+                    label="Password"
+                    required
+                    id="Password"
+                    type="text"
+                    message="password is required"
+                    placeholder="Type your password"
+                    min={6}
+                    register={register}
+                    errors={errors}
+                />
+            </div>
+
+            <button
+            disabled={loader}
+            type='submit'
+            className='bg-customRed font-semibold text-white  bg-custom-gradient w-full py-2 hover:text-slate-400 transition-colors duration-100 rounded-sm my-3'>
+           {loader ? "Loading..." : "Register"}
+            </button>
+            <p>
+                Already have an Account?
+                <Link
+                className='font-semibold underline hover:text-black'
+                to="/login"
+                >
+                    <span className='text-btnColor '> Login</span>
+                </Link>
+            </p>
         </form>
     </div>
   )
