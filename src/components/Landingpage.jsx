@@ -3,10 +3,14 @@ import { FaLink, FaShareAlt, FaEdit, FaChartLine } from "react-icons/fa";
 import Card from "./Card"
 import { motion } from "framer-motion"
 import { useNavigate } from 'react-router-dom';
+import { useStoreContext } from '../ContextApi/contextapi';
+
 
 const Landingpage = () => {
 
   const navigate = useNavigate();
+    const { token } = useStoreContext();
+    console.log("landing page: " + token);
 
   const dashBoardNavigateHandler = () => {
     
@@ -14,7 +18,7 @@ const Landingpage = () => {
 
   return (
     <div className="min-h-[calc(100vh-64px)] lg:px-14 sm:px-8 px-4">
-      <div className="lg:flex-row flex-col lg:py-5 pt-16 lg:gap-10 gap-8 flex justify-between items-center">
+      <div className="lg:flex-row flex-c ol lg:py-5 pt-16 lg:gap-10 gap-8 flex justify-between items-center">
         <div className="flex-1">
           <motion.h1 
               initial={{opacity: 0, y:-80}}
