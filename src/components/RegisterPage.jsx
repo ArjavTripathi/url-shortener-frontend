@@ -32,6 +32,7 @@ function RegisterPage() {
             )
             reset();
             navigate("/login");
+            console.log("success")
             toast.success("Registeration Successful")
         } catch(error) {
             console.log(error);
@@ -55,7 +56,7 @@ function RegisterPage() {
                 <TextField 
                     label="Username"
                     required
-                    id="Username"
+                    id="username"
                     type="text"
                     message="username is required"
                     placeholder="Type your username"
@@ -66,7 +67,7 @@ function RegisterPage() {
                 <TextField 
                     label="Email"
                     required
-                    id="Email"
+                    id="email"
                     type="text"
                     message="email is required"
                     placeholder="Type your email"
@@ -77,7 +78,7 @@ function RegisterPage() {
                 <TextField 
                     label="Password"
                     required
-                    id="Password"
+                    id="password"
                     type="text"
                     message="password is required"
                     placeholder="Type your password"
