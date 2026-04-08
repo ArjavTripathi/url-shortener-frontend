@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Graph from './Graph'
 import { dummyData } from '../../DummyData/data'
 import { useStoreContext } from '../../ContextApi/contextapi'
@@ -6,7 +6,7 @@ import { useFetchTotalClicks } from '../../hooks/useQuery'
 
 const DashboardLayout = () => {
   const { token } = useStoreContext();
-  console.log("token:", token);
+  const [shortenPopUp, setShortenPopUp] = useState(false);
 
   const {isLoading: loader, data: totalClicks = []} = useFetchTotalClicks(token, onError);
   console.log("loader:", loader, "totalClicks:", totalClicks);
@@ -36,7 +36,8 @@ const DashboardLayout = () => {
             <Graph graphData={totalClicks}/>
           </div>
           <div className='py-5 sm:text-end text-center'>
-            <button className='bg-custom-gradient px-4 py-2 rounded-md'> 
+            <button className='bg-custom-gradient px-4 py-2 rounded-md'
+            onClick={() => setShortenPopUp(true)}> 
               Create a new short Url
             </button>
           </div>
