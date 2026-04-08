@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Graph from './Graph'
-import { dummyData } from '../../DummyData/data'
 import { useStoreContext } from '../../ContextApi/contextapi'
 import { useFetchTotalClicks } from '../../hooks/useQuery'
+import ShortenPopUp from './ShortenPopUp'
 
 const DashboardLayout = () => {
+  const refetch = false
   const { token } = useStoreContext();
   const [shortenPopUp, setShortenPopUp] = useState(false);
 
@@ -43,6 +44,12 @@ const DashboardLayout = () => {
           </div>
         </div>
         )}
+
+        <ShortenPopUp
+          refetch={refetch}
+          open={shortenPopUp}
+          setOpen={setShortenPopUp}
+          />
     </div>
   )
 }
