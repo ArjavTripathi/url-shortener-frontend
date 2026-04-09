@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 import RegisterPage from './components/RegisterPage'
 import { Toaster } from 'react-hot-toast'
 import LoginPage from './components/LoginPage'
-import shortenUrlPage from './components/shortenUrlPage'
+import ShortenUrlPage from './components/shortenUrlPage'
 import DashboardLayout from './components/Dashboard/dashboardlayout'
 
 const AppRouter = () => {
@@ -31,7 +31,7 @@ export default AppRouter
 export const SubDomainRouter = () => {
     return (
         <Routes>
-            <Route path='/:url' element={< shortenUrlPage/>} />
+            <Route path='/:url' element={< ShortenUrlPage/>} />
         </Routes>
     )
 }

@@ -13,6 +13,7 @@ export const getApps = () => {
 }
 
 export const getSubDomain = (location) => {
+    console.log(location)
     const locationParts = location.split(".")
     const isLocalHost = locationParts.slice(-1)[0] === "localhost"
     const sliceTill = isLocalHost ? -1 : -2
