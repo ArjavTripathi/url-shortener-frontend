@@ -9,6 +9,7 @@ import LoginPage from './components/LoginPage'
 import ShortenUrlPage from './components/shortenUrlPage'
 import DashboardLayout from './components/Dashboard/dashboardlayout'
 import PrivateRoute from './PrivateRoute'
+import ErrorPage from './components/ErrorPage'
 
 const AppRouter = () => {
   return (
@@ -23,6 +24,10 @@ const AppRouter = () => {
                     <Route path='/login' element={<PrivateRoute publicPage={true}>< LoginPage/></PrivateRoute>}/>
 
                     <Route path='/dashboard' element={ <PrivateRoute publicPage={false}>< DashboardLayout/></PrivateRoute>}/>
+
+                    <Route path="*" element={<ErrorPage message="This page doesn't seem to exist..."/>}/>
+                    <Route path="/error" element={<ErrorPage message="ERROR"/>}/>
+
                 </Routes>
         <Footer />
     </>

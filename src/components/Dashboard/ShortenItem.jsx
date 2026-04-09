@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import api from '../../api/api';
 import { Circles } from 'react-loader-spinner';
 import Graph from './Graph';
+import Loader from '../Loader';
 
 
 const ShortenItem = ({ originalUrl, shortUrl, clickCount, creationDate }) => {
@@ -137,21 +138,7 @@ const ShortenItem = ({ originalUrl, shortUrl, clickCount, creationDate }) => {
                 analyticsToggle ? "flex" : "hidden"
             } max-h-96 sm:mt-0 mt-5 min-h-96 relative border-t-2 w-[100%] overflow-hidden`}>
                 {loader ? (
-                    <div className="min-h-[calc(450px-140px)] flex justify-center items-center w-full">
-                        <div className="flex flex-col items-center gap-1">
-                            <Circles
-                                height="80"
-                                width="80"
-                                color="#4fa94d"
-                                ariaLabel="circles-loading"
-                                wrapperStyle={{}}
-                                wrapperClass=""
-                                visible={true}
-                                />
-                            
-                            <p className='text-slate-700'> Please wait... </p>
-                        </div>
-                    </div>
+                    <Loader />
                     )
 
                     : (
