@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoIosMenu } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
+import { useStoreContext } from "../ContextApi/contextapi";
 
 const Navbar = () => {
+  const navigate = useNavigate()
+  const {token, setToken} = useStoreContext()
   const path = useLocation().pathname;
   const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const onLogoutHandler = () => {
+    setToken(null)
+    localStorage.removeItem("JWT_TOKEN")
+    navigate("/")
+  }
 
   return (
         <div className="h-16 bg-custom-gradient z-50 flex items-center sticky top-0">
@@ -40,6 +49,19 @@ const Navbar = () => {
               About
             </Link>
           </li>
+          {token &&(
+            <li className="font-[500] transition-all duration-150">
+            <Link
+              className={`px-3 py-1 rounded-md hover:text-white transition-all duration-150 ${
+                path === "/dashboard" ? "text-white" : "text-gray-200"
+              }`}
+              to="/dashboard"
+            >
+              Dashboard
+            </Link>
+          </li>
+          )}
+          {!token &&(
           <li>
             <Link to="/register">
               <span className="bg-rose-700 text-white cursor-pointer w-24 flex items-center justify-center font-semibold px-4 py-2 rounded-md hover:text-slate-300 transition-all duration-150">
@@ -47,6 +69,18 @@ const Navbar = () => {
               </span>
             </Link>
           </li>
+          )}
+
+          {token &&(
+          <li>
+            <button
+            onClick={onLogoutHandler}
+            className="bg-rose-700 text-white cursor-pointer w-24 flex items-center justify-center font-semibold px-4 py-2 rounded-md hover:text-slate-300 transition-all duration-150">
+                Logout
+            </button>
+          </li>
+          )}
+          
         </ul>
         <button
           onClick={() => setNavbarOpen(!navbarOpen)}
